@@ -7,7 +7,7 @@ const app = express()
 const port = 3000
 
 app.use(express.json())
-databaseService.connect().catch(console.dir)
+databaseService.connect()
 
 app.use('/api/users', usersRouter)
 
