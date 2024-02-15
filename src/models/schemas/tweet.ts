@@ -1,4 +1,4 @@
-import { MediaType, TweetAudience, TweetType } from "~/enum/tweet"
+import { MediaType, TweetAudience, TweetType } from '@/enum/tweet'
 
 export interface Tweet {
   _id: string
