@@ -1,11 +1,13 @@
 import express from 'express'
 import { usersRouter } from './routers/usersRouter'
+import { databaseService } from './services/databaseService'
+import dotenv from 'dotenv'
 
 const app = express()
 const port = 3000
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+databaseService.connect().catch(console.dir)
 
 app.use('/api/users', usersRouter)
 
