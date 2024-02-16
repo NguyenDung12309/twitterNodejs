@@ -12,13 +12,13 @@ export const loginController: Controller<User> = (req, res) => {
 
 export const registerController: Controller<reqUserRegister> = async (req, res) => {
   try {
-    await userService.register(req.body)
+    const { accessToken, refreshToken } = await userService.register(req.body)
     res.status(200).json({
-      message: 'register sucess'
+      message: 'register sucess',
+      accessToken,
+      refreshToken
     })
   } catch (err) {
-    console.log(err)
-
     res.status(400).json({
       message: 'register fail',
       err
