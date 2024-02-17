@@ -52,21 +52,10 @@ class UsersService {
     }
   }
 
-  async checkEmailExists(email: string, { message }: { message: any }) {
-    try {
-      const isExistEmail = await databaseService.users.findOne({ email })
+  async checkEmailExists(email: string) {
+    const isExistEmail = await databaseService.users.findOne({ email })
 
-      if (isExistEmail) {
-        return message({
-          external: 'email exist'
-        })
-      }
-    } catch (error) {
-      return message({
-        external: 'Server error'
-      })
-    }
+    return !!isExistEmail
   }
 }
-
 export const userService = new UsersService()
