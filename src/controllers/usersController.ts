@@ -10,18 +10,11 @@ export const loginController: Controller<User> = (req, res) => {
   })
 }
 
-export const registerController: Controller<reqUserRegister> = async (req, res) => {
-  try {
-    const { accessToken, refreshToken } = await userService.register(req.body)
-    res.status(200).json({
-      message: 'register sucess',
-      accessToken,
-      refreshToken
-    })
-  } catch (err) {
-    res.status(400).json({
-      message: 'register fail',
-      err
-    })
-  }
+export const registerController: Controller<reqUserRegister> = async (req, res, next) => {
+  const { accessToken, refreshToken } = await userService.register(req.body)
+  res.status(200).json({
+    message: 'register sucess',
+    accessToken,
+    refreshToken
+  })
 }
