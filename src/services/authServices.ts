@@ -7,7 +7,7 @@ import { TokenTypes } from '@/enum/token'
 import { RefreshToken } from '@/models/schemas/RefreshTokenSchema'
 import { ObjectId } from 'mongodb'
 
-class UsersService {
+class AuthService {
   private async signRefreshToken(userId: string) {
     return await signToken({
       payload: {
@@ -84,4 +84,4 @@ class UsersService {
     return result
   }
 }
-export const userService = new UsersService()
+export const authService = new AuthService()
