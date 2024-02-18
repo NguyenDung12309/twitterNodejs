@@ -5,3 +5,8 @@ export class reqUserRegister {
   password: string
   confirmPassword: string
 }
+
+export class reqUserLogin {
+  email: string
+  password: string
+}

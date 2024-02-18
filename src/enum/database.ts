@@ -1,3 +1,4 @@
 export enum CollectionName {
-  USERS = 'users'
+  USERS = 'users',
+  REFRESH_TOKEN = 'refreshToken'
 }

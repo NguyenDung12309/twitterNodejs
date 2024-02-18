@@ -29,11 +29,10 @@ export const registerValidator = checkSchema({
     trim: true,
     custom: {
       options: async (value) => {
-        const isExistEmail = await userService.checkEmailExists(value)
+        const isExistEmail = await userService.findUser(value)
         if (isExistEmail) {
           throw new Error(USER_MESSAGE.EMAIL_ALREADY_EXISTS)
         }
-        return
       }
     }
   },
@@ -50,44 +49,13 @@ export const registerValidator = checkSchema({
         max: 50
       },
       errorMessage: USER_MESSAGE.PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50
-    },
-    isStrongPassword: {
-      options: {
-        minLength: 6,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1
-      },
-      errorMessage: USER_MESSAGE.PASSWORD_MUST_BE_STRONG
     }
   },
-  confirm_password: {
-    notEmpty: {
-      errorMessage: USER_MESSAGE.CONFIRM_PASSWORD_IS_REQUIRED
-    },
-    isString: {
-      errorMessage: USER_MESSAGE.CONFIRM_PASSWORD_MUST_BE_A_STRING
-    },
-    isLength: {
-      options: {
-        min: 6,
-        max: 50
-      },
-      errorMessage: USER_MESSAGE.CONFIRM_PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50
-    },
-    isStrongPassword: {
-      options: {
-        minLength: 6,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1
-      },
-      errorMessage: USER_MESSAGE.CONFIRM_PASSWORD_MUST_BE_STRONG
-    },
+  confirmPassword: {
     custom: {
       options: (value, { req }) => {
+        console.log({ value, pass: req.body.password })
+
         if (value !== req.body.password) {
           throw new Error(USER_MESSAGE.CONFIRM_PASSWORD_MUST_BE_THE_SAME_AS_PASSWORD)
         }
@@ -95,7 +63,7 @@ export const registerValidator = checkSchema({
       }
     }
   },
-  date_of_birth: {
+  dateOfBirth: {
     isISO8601: {
       options: {
         strict: true,
