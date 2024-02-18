@@ -20,5 +20,7 @@ export const AUTH_MESSAGE = {
   DATE_OF_BIRTH_MUST_BE_ISO8601: 'Date of birth must be ISO8601',
   EMAIL_PASSWORD_NOT_FOUND: 'Email or password not incorrect',
   LOGIN_SUCCESS: 'Login success',
-  REGISTER_SUCCESS: 'Register success'
+  REGISTER_SUCCESS: 'Register success',
+  ACCESS_TOKEN_INVALID: 'Access token invalid',
+  ACCESS_TOKEN_IS_REQUIRED: 'Access token is required'
 } as const
