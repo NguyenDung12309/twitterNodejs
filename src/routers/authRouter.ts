@@ -5,7 +5,8 @@ import { registerValidator } from '@/middlewares/validates/userRegister'
 import { validate } from '@/middlewares/validateMiddleware'
 import { loginValidator } from '@/middlewares/validates/userLogin'
 
-export const usersRouter = Router()
+export const authRouter = Router()
 
-usersRouter.post('/login', validate(loginValidator), wrapRequestHandler(loginController))
-usersRouter.post('/register', validate(registerValidator), wrapRequestHandler(registerController))
+authRouter.post('/login', validate(loginValidator), wrapRequestHandler(loginController))
+authRouter.post('/register', validate(registerValidator), wrapRequestHandler(registerController))
+authRouter.post('/logout')
