@@ -1,5 +1,5 @@
 import { TokenTypes } from '../enum/token'
-import jwt, { Algorithm, Secret, SignOptions } from 'jsonwebtoken'
+import jwt, { Algorithm, JwtPayload, Secret, SignOptions } from 'jsonwebtoken'
 import 'dotenv/config'
 
 class PayloadType {
@@ -26,6 +26,23 @@ export const signToken: SignTokenTypes = ({ payload, privateKey = process.env.SE
       }
 
       return resolve(token as string)
+    })
+  })
+}
+
+export const verifyToken = ({
+  token,
+  secretOrPublicKey = process.env.SECRET_KEY || ''
+}: {
+  token: string
+  secretOrPublicKey?: string
+}) => {
+  return new Promise<JwtPayload>((resolve, reject) => {
+    jwt.verify(token, secretOrPublicKey, function (err, decoded) {
+      if (err) {
+        throw reject(err)
+      }
+      resolve(decoded as JwtPayload)
     })
   })
 }

@@ -23,3 +23,9 @@ export const registerController: Controller<reqUserRegister> = async (req, res) 
     refreshToken
   })
 }
+
+export const logoutController: Controller<reqUserRegister> = async (req, res) => {
+  res.status(200).json({
+    message: 'logout success'
+  })
+}

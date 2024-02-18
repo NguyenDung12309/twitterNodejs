@@ -1,12 +1,13 @@
 import { Router } from 'express'
-import { loginController, registerController } from '@/controllers/usersController'
 import { wrapRequestHandler } from '@/utils/helper'
-import { registerValidator } from '@/middlewares/validates/userRegister'
 import { validate } from '@/middlewares/validateMiddleware'
-import { loginValidator } from '@/middlewares/validates/userLogin'
+import { loginValidator } from '@/middlewares/validates/authLogin'
+import { registerValidator } from '@/middlewares/validates/authRegister'
+import { loginController, logoutController, registerController } from '@/controllers/authController'
+import { accessTokenValidator } from '@/middlewares/validates/authAccessToken'
 
 export const authRouter = Router()
 
 authRouter.post('/login', validate(loginValidator), wrapRequestHandler(loginController))
 authRouter.post('/register', validate(registerValidator), wrapRequestHandler(registerController))
-authRouter.post('/logout')
+authRouter.post('/logout', validate(accessTokenValidator), wrapRequestHandler(logoutController))
