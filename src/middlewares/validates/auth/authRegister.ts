@@ -54,8 +54,6 @@ export const registerValidator = checkSchema({
   confirmPassword: {
     custom: {
       options: (value, { req }) => {
-        console.log({ value, pass: req.body.password })
-
         if (value !== req.body.password) {
           throw new Error(AUTH_MESSAGE.CONFIRM_PASSWORD_MUST_BE_THE_SAME_AS_PASSWORD)
         }
