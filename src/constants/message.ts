@@ -21,6 +21,10 @@ export const AUTH_MESSAGE = {
   EMAIL_PASSWORD_NOT_FOUND: 'Email or password not incorrect',
   LOGIN_SUCCESS: 'Login success',
   REGISTER_SUCCESS: 'Register success',
+  LOGOUT_SUCCESS: 'Logout success',
   ACCESS_TOKEN_INVALID: 'Access token invalid',
-  ACCESS_TOKEN_IS_REQUIRED: 'Access token is required'
+  ACCESS_TOKEN_IS_REQUIRED: 'Access token is required',
+  REFRESH_TOKEN_INVALID: 'Refresh token invalid',
+  REFRESH_TOKEN_IS_REQUIRED: 'Refresh token is required',
+  REFRESH_TOKEN_NOT_EXIST: 'Refresh token not exist'
 } as const

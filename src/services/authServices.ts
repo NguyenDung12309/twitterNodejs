@@ -1,4 +1,3 @@
-import { reqUserRegister } from '@/models/requests/usersRequest'
 import { databaseService } from './databaseService'
 import { User } from '@/models/schemas/usersSchema'
 import { hashString } from '@/utils/crypto'
@@ -6,6 +5,7 @@ import { signToken } from '@/utils/jwt'
 import { TokenTypes } from '@/enum/token'
 import { RefreshToken } from '@/models/schemas/RefreshTokenSchema'
 import { ObjectId } from 'mongodb'
+import { reqAuthRegister } from '@/models/requests/authRequest'
 
 class AuthService {
   private async signRefreshToken(userId: string) {
@@ -44,7 +44,7 @@ class AuthService {
     }
   }
 
-  async register(payload: reqUserRegister) {
+  async register(payload: reqAuthRegister) {
     const data = await databaseService.users.insertOne(
       new User({
         ...payload,
@@ -82,6 +82,10 @@ class AuthService {
     const result = await databaseService.users.findOne({ email })
 
     return result
+  }
+
+  async logout(refreshToken: string) {
+    await databaseService.refreshToken.deleteOne({ token: refreshToken })
   }
 }
 export const authService = new AuthService()
